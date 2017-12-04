@@ -1,0 +1,126 @@
+
+<link rel="stylesheet" type="text/css" href="../../static/srcCss/user-system.css">
+
+<div class="panel">
+    <div class="panel-heading">账号管理</div>
+    <div class="panel-body">
+        <form class="form-inline" id="searchForm" action="../admin/userlist" method="get" style="float: left;" onkeydown="if(event.keyCode==13)return false;">&nbsp;&nbsp;
+            <input type="text" class="form-control" name="account" id="account" placeholder="账号">&nbsp;&nbsp;
+            <input type="text" class="form-control" name="user" id="user" placeholder="使用人">&nbsp;&nbsp;
+            <select name="post" id="post" class="form-control" style="width: 180px;">&nbsp;&nbsp;
+                <option value="0">请选择角色</option>
+                {{range $k,$v:=.role}}
+                <option value="{{$v.Id}}">{{$v.Name}}</option>
+                {{end}}
+            </select>&nbsp;&nbsp;
+            <select name="account-state" id="account-state" class="form-control" style="width: 180px;">
+                <option value="0">请选择账号状态</option>
+                <option value="1">启用</option>
+                <option value="2">禁用</option>
+            </select>&nbsp;&nbsp;
+            <button type="submit" class="btn btn-info" id="submit">搜索</button>
+        </form>
+        <span class="btn btn-info add" style="float: right;">添加账号</span>
+        <div style="clear: both; border-bottom: #ddd solid 1px; height: 15px;"></div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>账号</th>
+                    <th class="text-center">使用人</th>
+                    <th class="text-center">角色</th>
+                    <th class="text-center">账号状态</th>
+                    <th class="text-center">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{range $k,$v:=.list}}
+                <tr>
+                    <td class="userId hide1">{{$v.Id}}</td>
+                    <td class="account">{{$v.Account}}</td>
+                    <td class="text-center user">{{$v.DisplayName}}</td>
+                    <td class="text-center post" data-index="{{$v.RoleId}}">{{$v.RoleName}}</td>
+                    <td class="text-center accountState" data-index="{{$v.IsUsed}}">
+                        {{if eq $v.IsUsed 1}}
+                        <span class="disable" style="cursor: default;">禁用</span>
+                        {{else}}
+                        <span class="enable" style="cursor: default;">启用</span>
+                        {{end}}
+                    </td>
+                    <td class="text-center">
+                        {{if ne $v.Id 1}}
+                            <span class="edit">编辑账号</span>
+                            <span class="delete">删除</span>
+                        {{end}}
+                    </td>
+                </tr>
+            {{end}}
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                        <div class="pagination" style="vertical-align: 10px;">总共{{.count}}条</div>
+                        <div class="pagination" id="pagination" data-url="" currentPage="{{.pageNum}}" pageCount="{{.pageCount}}"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+<!-- 弹窗内容 -->
+<form id="content" class="form-horizontal" style="display: none;" onkeydown="if(event.keyCode==13)return false;">
+    <input type="hidden" id="c-userId">
+    <div class="error-item">
+        <i class="fa fa-minus-circle error-icon"></i>
+        <p class="error-msg"></p>
+    </div>
+    <div class="form-group">
+        <label for="c-account" class="col-sm-2 control-label">账号</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="c-account" placeholder="请输入账号" autocomplete="off">
+        </div>
+    </div>
+    <div class="form-group password">
+        <label for="c-password" class="col-sm-2 control-label">密码</label>
+        <div class="col-sm-8">
+            <input type="password" class="form-control" id="c-password" placeholder="请输入密码" autocomplete="off">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-user" class="col-sm-2 control-label">使用人</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="c-user" placeholder="请输入使用人姓名" autocomplete="off">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-post" class="col-sm-2 control-label">角色</label>
+        <div class="col-sm-8">
+            <select name="c-post" id="c-post" class="form-control">
+                <option value="0">请选择角色</option>
+                {{range $k,$v:=.role}}
+                <option value="{{$v.Id}}">{{$v.Name}}</option>
+                {{end}}
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="c-accountState" class="col-sm-2 control-label">账号状态</label>
+        <div class="col-sm-8">
+             <select name="c-accountState" id="c-accountState" class="form-control">
+                <option value="2">请选择账号状态</option>
+                <option value="0">启用</option>
+                <option value="1">禁用</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <input type="button" value="取消" class="btn btn-default" id="cancel">
+            <input type="button" value="确定" class="btn btn-info" id="save">
+        </div>
+    </div>
+</form>
+
+<script type="text/javascript" src="../../static/srcJs/user-system.js"></script>

@@ -1,0 +1,42 @@
+
+<link rel="stylesheet" type="text/css" href="../../static/srcCss/withdrawal-record.css">
+<div class="panel">
+    <div class="panel-heading">用户{{accountDispose .user.Account}}提现明细</div>
+    <div class="panel-body">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>提现时间</th>
+                    <th>审批时间</th>
+                    <th>提现金额(元)</th>
+                    <th class="text-center">状态</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{range $v,$v:=.userDepositDetail}}
+                <tr>
+                    <td>{{formatTimeToString $v.AmountTime}}</td>
+                    <td>{{formatTimeToString $v.CheckTime}}</td>
+                    <td>{{$v.Amount}}</td>
+                    <td class="text-center">
+                        {{if eq $v.OrderState 1}}<span class="stateC2">等待人工审核</span>
+                        {{else if eq $v.OrderState 2}}<span class="stateC1">放款成功</span>
+                        {{else if eq $v.OrderState 3}}<span class="stateC5">拒绝放款</span>
+                        {{else}}<span class="stateC5">没有相关记录</span>
+                        {{end}}
+                    </td>
+                </tr>
+            {{end}}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <div class="f1 pagination">总共{{.count}}条</div>
+                        <div class="f1 pagination" id="pagination" data-url="" currentPage="{{.pageNum}}" pageCount="{{.pageCount}}"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<script type="text/javascript" src="../../static/srcJs/withdrawal-record.js"></script>

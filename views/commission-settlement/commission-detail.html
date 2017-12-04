@@ -1,0 +1,107 @@
+
+<link rel="stylesheet" type="text/css" href="../../static/srcCss/commission-detail.css">
+
+<div class="panel">
+    <div class="panel-heading">
+        <strong class="pull-left">收入汇总</strong>
+        {{if eq .accountType 0}}
+        <span class="pull-right btn btn-info" id="withdrawal-application">申请提现</span>
+        {{end}}
+    </div>
+    <div class="panel-body">
+        <div class="data-item">
+            <p class="title">总收入</p>
+            <p class="data data1">{{.allIncome}}</p>
+        </div>
+        <div class="data-item">
+            <p class="title">昨日收入</p>
+            <p class="data data2">{{.yesterdayIncome}}</p>
+        </div>
+        <div class="data-item">
+            <p class="title">日均收入</p>
+            <p class="data data3">{{.dayIncome}}</p>
+        </div>
+        <div class="data-item">
+            {{if eq .accountType 0}}
+            <i class="fa fa-question-circle ps-1"></i>
+            {{end}}
+            <p class="title">可提现收入</p>
+            <p class="data data4">{{.income}}</p>
+        </div>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="panel-heading">
+        <strong class="pull-left">数据明细</strong>
+    </div>
+    <div class="panel-body">
+        <form class="form-inline" id="searchForm" action="../commission/commissioninfo" method="get">
+            <input name="startDate" value="{{.startDate}}" autocomplete="off" id="startDate" class="Wdate form-control" type="text" onFocus="var endDate = $dp.$('endDate');WdatePicker({dateFmt:'yyyy-MM-dd', onpicked:function(){endDate.focus();},maxDate:'#F{$dp.$D(\'endDate\')}'})" placeholder="起始时间">&nbsp;&nbsp;-&nbsp;
+            <input name="endDate" value="{{.endDate}}" autocomplete="off" id="endDate" class="Wdate form-control" type="text" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'startDate\')}'})" placeholder="结束时间">&nbsp;&nbsp;&nbsp;
+            <input type="button" id="submit" class="btn btn-info" value="搜索">
+        </form>
+        <hr>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>日期</th>
+                    <th class="text-center">收入金额(元)</th>
+                    <th class="text-center">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{range $k,$v:=.incomeData}}
+                <tr>
+                    <td>{{$v.CreateDate.Format "2006-01-02"}}</td>
+                    <td class="text-center">{{$v.AgentIncome}}</td>
+                    <td  class="text-center">
+                        <a href="../data/datapage?date={{$v.CreateDate}}" class="skip1 edit">查看明细</a>
+                    </td>
+                </tr>
+            {{end}}
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <div class="pagination" style="vertical-align: 10px;">总共{{.count}}条</div>
+                        <div class="pagination" id="pagination" data-url="" currentPage="{{.pageNum}}" pageCount="{{.pageCount}}"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<!-- 弹窗内容 -->
+<div id="content" class="form-horizontal" style="display: none;">
+    <div class="form-group">
+        <label class="col-sm-3 control-label">提现至：</label>
+        <div class="col-sm-7">
+            <p class="hide1" id="bankCardId">{{.bankCard.Id}}</p>
+            <p class="form-control" style="border: none;">尾号<span>{{bankCardFormat .bankCard.BankCardNumber}}</span>银行卡</p>
+        </div>
+    </div>
+    <div class="form-group" style="margin-bottom: 20px;">
+        <label for="withdrawal-amount" class="col-sm-3 control-label">提现金额：</label>
+        <div class="col-sm-7 input-group">
+            <span class="input-group-addon">￥</span>
+            <input type="number" class="form-control" id="withdrawal-amount" placeholder="" min="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <input type="button" value="取消" class="btn btn-default" id="cancel">
+            <input type="button" value="确定" class="btn btn-info" id="save">
+        </div>
+    </div>
+</div>
+
+<div class="layer_notice1 layer_notice">
+    <p>1、可提现收入为当前可用于提现的金额，用户每周四（仅限每周四全天）可以发起提现申请</p>
+    <p>2、可提现金额为上周及以前产生的提成</p>
+    <p>3、每次提现金额不能低于100元</p>
+</div>
+
+
+<script type="text/javascript" src="../../static/srcJs/commission-detail.js"></script>

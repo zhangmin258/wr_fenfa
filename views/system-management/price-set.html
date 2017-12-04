@@ -1,0 +1,84 @@
+
+<link rel="stylesheet" type="text/css" href="../../static/srcCss/price-set.css">
+
+<div class="panel">
+    <div class="panel-heading">
+        <strong class="pull-left">价格列表</strong>
+        <!-- <strong class="pull-right ps"><i class="fa fa-question-circle"></i></strong> -->
+    </div>
+    <div class="panel-body">
+        <form class="form-inline" id="searchForm" action="" method="get" onkeydown="if(event.keyCode==13)return false;">
+            <input type="text" class="form-control" name="name" id="product-name" placeholder="请输入产品名称" autocomplete="off">
+            <button type="submit" class="btn btn-info">搜索</button>
+        </form>
+        <hr>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>添加时间</th>
+                    <th>产品名称</th>
+                    <th>有效定义</th>
+                    <th class="text-center">产品单价(元)</th>
+                    <th class="text-center">产品状态</th>
+                    <th class="text-center">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{range $k,$v:=.products}}
+                <tr>
+                    <td class="productId hide1">{{$v.ProductId}}</td>
+                    <td>{{$v.CreateTime.Format "2006-01-02 15:04:15"}}</td>
+                    <td class="productName">{{$v.Name}}</td>
+                    <td>{{$v.CpaDefine}}</td>
+                    <td class="text-center productPrice">{{$v.AgentPrice}}</td>
+                    <td class="text-center">
+                        {{if eq $v.IsUse 1}}
+                        <span class="unuse">不可用</span>
+                        {{else}}
+                        <span class="use">可用</span>
+                        {{end}}
+                    </td>
+                    <td class="text-center">
+                        <span class="edit">设置价格</span>
+                    </td>
+                </tr>
+            {{end}}
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="6">
+                        <div class="pagination" style="vertical-align: 10px;">总共{{.count}}条</div>
+                        <div class="pagination" id="pagination" data-url="" currentPage="{{.pageNum}}" pageCount="{{.pageCount}}"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<!-- 弹窗内容 -->
+<div id="content" class="form-horizontal" style="display: none;">
+    <input type="hidden" id="productId">
+    <div class="form-group">
+        <label for="productName" class="col-sm-2 control-label">产品名称</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="productName" placeholder="请输入产品名称" style="width: 272px;">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="price" class="col-sm-2 control-label">单价</label>
+        <div class="col-sm-7 input-group" style="padding-left: 15px;">
+            <span class="input-group-addon">￥</span>
+            <input type="number" class="form-control" id="price" placeholder="请输入单价" min="0">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <input type="button" value="取消" class="btn btn-default" id="cancel">
+            <input type="button" value="保存" class="btn btn-info" id="save">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../static/srcJs/price-set.js"></script>

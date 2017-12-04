@@ -1,0 +1,66 @@
+
+<link rel="stylesheet" type="text/css" href="../../static/srcCss/price-list.css">
+
+<div class="panel">
+    <div class="panel-heading">
+        <strong class="pull-left">价格列表</strong>
+        <strong class="pull-right ps"><i class="fa fa-question-circle"></i></strong>
+    </div>
+    <div class="panel-body">
+        <form class="form-inline" id="searchForm" action="../commission/productpricelist" method="get" onkeydown="if(event.keyCode==13)return false;">
+            <input type="text" class="form-control" name="name" id="product-name" placeholder="请输入产品名称" autocomplete="off">
+            <button type="submit" class="btn btn-info">搜索</button>
+        </form>
+        <hr>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>添加时间</th>
+                    <th>产品名称</th>
+                    <th>有效定义</th>
+                    <th class="text-center">产品单价(元)</th>
+                    <th class="text-center">产品状态</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{range $k,$v:=.products}}
+                <tr>
+                    <td>{{$v.CreateTime.Format "2006-01-02 15:04:05"}}</td>
+                    <td>{{$v.Name}}</td>
+                    <td>{{$v.CpaDefine}}</td>
+                    <td class="text-center">{{float64ToString $v.AgentPrice}}</td>
+                    <td class="text-center">
+                        {{if eq $v.IsUse 0}}
+                        <span class="use">可用</span>
+                        {{else}}
+                        <span class="unuse">不可用</span>
+                        {{end}}
+                    </td>
+                </tr>
+                {{end}}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <div class="pagination" style="vertical-align: 10px;">总共{{.count}}条</div>
+                        <div class="pagination" id="pagination" data-url="" currentPage="{{.pageNum}}" pageCount="{{.pageCount}}"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<div class="layer_notice">
+    <h4>1、添加时间是该产品开始推广的时间；</h4>
+    <h4>2、有效定义包含四种：</h4>
+    <p>1）注册，即在微融APP中进入该产品的推广页面，填写手机号和验证码，并显示注册成功，推广员才能拿到推广费用，一般为了保险起见，尽可能下载该产品APP，并通过该APP登录；</p>
+    <p>2）激活，即完成上述的注册流程后，通过下载的该产品APP登录；</p>
+    <p>3）进件，即完成上述激活流程后，按照该APP的提示，填写完成资料，完成贷款申请；</p>
+    <p>4）下款，即完成上述的进件流程，通过该APP的风控审核，用户通过该APP借款成功（放款到账）；</p>
+    <h4>3、产品状态包含两种：</h4>
+    <p>1）可用，即该产品处于可推广状态，产品有效数据以后的推广费用我司会结算；</p>
+    <p>2）不可用，即该产品处于下线状态，在微融APP中已经找不到了；</p>
+</div>
+
+<script type="text/javascript" src="../../static/srcJs/price-list.js"></script>

@@ -1,0 +1,39 @@
+
+.panel-heading{
+    overflow: hidden;
+}
+
+.ps{
+    font-size: 20px;
+    cursor: pointer;
+}
+.panel-body {
+    padding-top: 20px;
+}
+
+#product-name{
+    width: 200px;
+}
+
+.use{
+    color: #2fb963;
+}
+
+.unuse{
+    color: #e55252;
+}
+
+.layer_notice{
+    display: none;
+    padding: 20px;
+    background: #5FB878;
+    color: #fff;
+}
+
+.layer_notice h4{
+    font-size: 15px;
+}
+
+.layer_notice p{
+    font-size: 12px;
+}

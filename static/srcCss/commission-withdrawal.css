@@ -1,0 +1,48 @@
+.panel-body {
+    padding-top: 20px;
+}
+
+#phone {
+    width: 200px;
+}
+
+td {
+    vertical-align: middle !important;
+}
+
+tbody td a, tbody td span {
+    display: inline-block;
+    margin: 0 2px;
+    padding: 3px 10px;
+    font-size: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.disable {
+    color: #fff;
+    background: #0191FF;
+}
+
+.enable {
+    color: #fff;
+    background: #18CC5C;
+}
+
+.nomal {
+    color: #18CC5C;
+    font-size: 14px;
+    cursor: default;
+}
+
+.unomal {
+    color: red;
+    font-size: 14px;
+    cursor: default;
+}
+
+.edit {
+    padding: 1px 10px;
+    color: #0191FF;
+    border: #0191FF solid 1px;
+}

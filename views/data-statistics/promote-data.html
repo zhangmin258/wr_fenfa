@@ -1,0 +1,86 @@
+
+<link rel="stylesheet" type="text/css" href="../../static/srcCss/promote-data.css">
+
+<div class="panel">
+    <div class="panel-heading panelHeading">
+        <strong class="pull-left">数据汇总</strong>
+        <div class="scrollText pull-right" style="display: none;">
+            <ul>
+                <li>当日最多能查看昨天的推广数据，看不到今天的数据请您不要着急哦</li>
+                <li></li>
+            </ul>
+        </div>
+        <i class="fa fa-times-circle close-o closed"></i>
+    </div>
+    <div class="panel-body">
+        <div class="data-item">
+            <p class="title">总注册人数</p>
+            <p class="data">{{.allRegisterCount}}</p>
+        </div>
+        <div class="data-item">
+            <p class="title">七日注册人数</p>
+            <p class="data">{{.sevenRegisterCount}}</p>
+        </div>
+        <div class="data-item">
+            <p class="title">昨日注册人数</p>
+            <p class="data">{{.yesterdayRegisterCount}}</p>
+        </div>
+        <div class="data-item">
+            <p class="title">日均注册人数</p>
+            <p class="data">{{.dayRegister}}</p>
+        </div>
+    </div>
+</div>
+
+
+<div class="panel">
+    <div class="panel-heading">数据明细</div>
+    <div class="panel-body">
+        <form class="form-inline" id="searchForm" action="../data/datapage" method="get">
+            <input type="hidden" name="userId" id="userId" class="btn btn-success" value="{{.userId}}">
+            <input name="startDate" value="{{.startDate}}" autocomplete="off" id="startDate" class="Wdate form-control" type="text" onFocus="var endDate = $dp.$('endDate');WdatePicker({dateFmt:'yyyy-MM-dd', onpicked:function(){endDate.focus();},maxDate:'#F{$dp.$D(\'endDate\')}'})" placeholder="起始时间">&nbsp;&nbsp;-&nbsp;
+            <input name="endDate" value="{{.endDate}}" autocomplete="off" id="endDate" class="Wdate form-control" type="text" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',minDate:'#F{$dp.$D(\'startDate\')}'})" placeholder="结束时间">&nbsp;&nbsp;&nbsp;
+            <div class="form-group platform">
+                <input type="text" class="form-control" id="platformName" placeholder="请输入注册平台" value="" name="productName">
+                <input type="hidden" id="platformId" value="">
+                <ul class="xl"></ul>
+            </div>
+            <input type="button" id="clear" class="btn btn-success" value="清空">
+            <input type="button" id="submit" class="btn btn-info" value="搜索">
+        </form>
+        <hr>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>用户手机号</th>
+                    <th>用户类型</th>
+                    <th>注册平台</th>
+                    <th>收益</th>
+                </tr>
+            </thead>
+            <tbody>
+            {{range $k,$v:=.registerDetail}}
+                <tr>
+                    <td>{{$v.CreateDate.Format "2006-01-02"}}</td>
+                    <td>{{accountDispose $v.Account}}</td>
+                    <td>{{if eq $v.IsAgent 0}}普通用户{{else}}代理{{end}}</td>
+                    <td>{{$v.ProductName}}</td>
+                    <td>{{$v.Income}} 元</td>
+                </tr>
+            {{end}}
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5">
+                        <div class="pagination" style="vertical-align: 10px;">总共{{.count}}条</div>
+                        <div class="pagination" id="pagination" data-url="../data/datapage" currentPage="{{.pageNum}}" pageCount="{{.pageCount}}"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../static/srcJs/promote-data.js"></script>

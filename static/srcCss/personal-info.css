@@ -1,0 +1,32 @@
+
+.con{
+    margin: 20px 50px;
+    float: left;
+}
+
+.con .user-logo{
+    width: 48px;
+    height: 48px;
+    display: block;
+    margin: 0 auto;
+}
+.con .name{
+    text-align: center;
+    line-height: 30px;
+}
+.con .item{
+    line-height: 30px;
+}
+.con .item .title{
+    display: inline-block;
+    width: 100px;
+    text-align: right;
+    margin-right: 15px;
+}
+
+
+.url{
+    opacity: 0;
+    filter: alpha(opacity=0);
+    cursor: default;
+}

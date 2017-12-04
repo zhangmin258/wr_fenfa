@@ -1,0 +1,224 @@
+
+
+/*css reset*/
+*{
+    margin: 0;
+    padding: 0;
+}
+ol,ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #999;
+}
+a:hover{
+    color: #e80012;
+}
+img{
+    border: none;
+    display: block;
+}
+label{
+    cursor: pointer;
+}
+input[type="checkbox"]{
+    cursor: pointer;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    font-family: tahoma, '微软雅黑', arial, sans-serif;
+    
+}
+
+.page-wrap{
+    width: 100%;
+    height: 100%;
+}
+
+.w{
+    width: 100%;
+    height: 836px;
+    background: url('../img/login-bg.png') no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+
+.w .logo{
+    width: 161px;
+    height: 75px;
+    position: absolute;
+    top: 50px;
+    left: 5%;
+}
+
+.w .wr-bg{
+    width: 515px;
+    height: 509px;
+    position: absolute;
+    top: 163px;
+    left: 15%;
+}
+
+.user-con{
+     position: absolute;
+     width: 400px;
+     right: 10%;
+     top: 50%;
+     margin-top: -150px;
+     background-color: #fff;
+     border-radius: 5px;
+}
+
+.user-con .user-title{
+    font-size: 18px;
+    color: #3F82E7;
+    text-align: center;
+    border-bottom: #ddd solid 1px;
+    padding: 15px 0;
+    font-weight: bold;
+}
+
+.user-con .user-box{
+    padding: 20px 40px 0 40px;
+}
+
+.user-con .user-box .error-item{
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 35px;
+    margin-bottom: 10px;
+    border: red solid 1px;
+    color: red;
+    background: #fde9e9;
+    display: none;
+}
+
+.user-con .user-box .error-item .error-icon{
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    margin-top: -7px;
+    font-size: 14px;
+}
+
+.user-con .user-box .user-item{
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.user-con .user-box .userItem{
+    margin-bottom: 5px;
+}
+
+
+.user-con .user-box .user-item .user-label{
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 18px;
+    color: #999;
+    cursor: default;
+}
+
+.user-con .user-box .user-item .user-content{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    border: #ccc solid 1px;
+    border-radius: 3px;
+    padding-left: 10px;
+    outline: none;
+    background: #fff;
+}
+
+.user-con .user-box .btn-submit{
+    display: block;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 20px;
+    letter-spacing: 10px;
+    margin-bottom: 10px;
+}
+
+.user-con .user-box .link-item{
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.user-con .user-box .link-item .link{
+    text-decoration: none;
+    color: #666;
+}
+
+.user-con .user-box .link-item .link:hover{
+    color: #c60023;
+}
+
+.footer{
+    width: 100%;
+    height: 155px;
+    background: url('../img/foot-bg.png') no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+}
+
+
+.cooperation-platform{
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    top: 10%;
+    overflow: hidden;
+}
+
+.cooperation-platform .title{
+    width: 80px;
+    height: 15px;
+    line-height: 15px;
+    margin: 0 auto;
+    font-size: 13px;
+    color: #0b89e3;
+    font-weight: bold;
+    border-left: #0b89e3 solid 2px;
+    border-right: #0b89e3 solid 2px;
+    margin-bottom: 20px;
+}
+
+.cooperation-platform .cooperation-link{
+    width: 600px;
+    height: 40px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.cooperation-platform .cooperation-link img{
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+.ps{
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    position: fixed;
+    bottom: 0;
+    background: rgba(20,149,231,0.8);
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    letter-spacing: 2px;
+}
+
+.ps span{
+    margin-right: 46px;
+}
+
+

@@ -1,0 +1,25 @@
+
+.panel-heading{
+    color: #ef9331;
+}
+
+/*放款成功*/
+.stateC1{
+    color: #02ca44;
+}
+/*审核未通过*/
+.stateC2{
+    color: #ef9331;
+}
+/*待审核*/
+.stateC3{
+    color: #666;
+}
+/*放款中*/
+.stateC4{
+    color: #051cfa;
+}
+/*放款失败*/
+.stateC5{
+    color: #d93b3b;
+}

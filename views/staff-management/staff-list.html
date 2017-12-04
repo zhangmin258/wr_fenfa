@@ -1,0 +1,105 @@
+<link rel="stylesheet" type="text/css" href="../../static/srcCss/staff-list.css">
+
+<div class="panel">
+    <div class="panel-heading">员工列表</div>
+    <input type="hidden" value="{{.user.Code}}" id="userCode">
+    <input type="hidden" value="{{.user.AccountType}}" id="AccountType">
+    <div class="panel-body">
+        <form class="form-inline" id="searchForm" action="../staff/stafflist" method="get" onkeydown="if(event.keyCode==13)return false;">
+            <input type="text" class="form-control" name="account" id="phone" placeholder="请输入手机号" autocomplete="off">
+            <button type="button" class="btn btn-info" id="submit">搜索</button>
+        </form>
+        <hr>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>创建日期</th>
+                <th>用户姓名</th>
+                <th>手机号码</th>
+                <th>登录状态</th>
+                <th>代理级别</th>
+                <th>分成系数</th>
+                <th class="text-center">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{range $k,$v:=.staff}}
+            <tr>
+                <td class="userId hide1">{{$v.UserAgentId}}</td>
+                <td class="code hide1">{{$v.Code}}</td>
+                <td class="date">{{$v.CreateTime.Format "2006-01-02 15:04:05"}}</td>
+                <td class="userName">{{$v.DisplayName}}</td>
+                <td class="phoneNum">{{accountDispose $v.Account}}</td>
+                <td class="state">
+                    {{if eq $v.IsUsed 0}}
+                    <span class="nomal">正常</span>
+                    {{else}}
+                    <span class="unomal">禁用</span>
+                    {{end}}
+                </td>
+                <td>
+                    {{if eq $v.AgentLevel 1}}一级代理
+                    {{else if eq $v.AgentLevel 2}}二级代理
+                    {{else if eq $v.AgentLevel 3}}三级代理
+                    {{else if eq $v.AgentLevel 4}}四级代理
+                    {{else if eq $v.AgentLevel 5}}五级代理
+                    {{else if gt $v.AgentLevel 5}}五级以上代理
+                    {{end}}
+                </td>
+                <td class="userFc">{{if $v.PriceScale}}<em>{{$v.PriceScale}}</em>%{{else}}100%{{end}}</td>
+                <td class="operation text-center">
+                    <span class="edit">编辑</span>
+                    {{if eq $v.IsUsed 1}}
+                    <span class="enable">启用登录</span>
+                    {{else}}
+                    <span class="disable">禁用登录</span>
+                    {{end}}
+                </td>
+            </tr>
+            {{end}}
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="7">
+                        <div class="pagination" style="vertical-align: 10px;">总共{{.count}}条</div>
+                        <div class="pagination" id="pagination" data-url="../staff/stafflist" currentPage="{{.pageNum}}" pageCount="{{.pageCount}}"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<!-- 弹窗内容 -->
+<div id="content" class="form-horizontal" style="display: none;">
+    <input type="hidden" id="userId">
+    <input type="hidden" id="code">
+    <div class="form-group">
+        <label for="user-name" class="col-sm-2 control-label">姓名</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="user-name" placeholder="请输入员工姓名">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="phone-num" class="col-sm-2 control-label">手机号</label>
+        <div class="col-sm-8">
+            <input type="text" class="form-control" id="phone-num" placeholder="请输入员工手机号">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="user-fc" class="col-sm-2 control-label">员工分成</label>
+        <div class="col-sm-8">
+            <input type="number" class="form-control" id="user-fc" placeholder="请输入员工分成">
+        </div>
+        <span class="col-sm-1">%</span>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <input type="button" value="取消" class="btn btn-default" id="cancel">
+            <input type="button" value="保存" class="btn btn-info" id="save">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../static/srcJs/staff-list.js" ></script>

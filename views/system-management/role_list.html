@@ -1,0 +1,19 @@
+
+
+<!-- 角色管理 -->
+<div class="panel">
+    <div class="panel-body">
+        <h2 class="panel-title">角色管理<span class="btn btn-info pull-right skip2" onclick="getpage('/system/roleedit')">添加</span></h2>
+        <div class="task_list col-md-12">
+            <div class="list_span"><span class="skip2" onclick="getpage('/system/visitroleedit?rid=visit')">外部用户权限管理</span></div>
+            {{range $k, $v := .list}}
+            <div class="list_span">
+                <span class="skip2" onclick="getpage('/system/roleedit?rid={{$v.Id}}')">{{$v.DisplayName}}</span>
+                <i data-id="{{$v.Id}}" class="delete">删除</i>
+            </div>
+            {{end}}
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../static/srcJs/role_list.js" ></script>

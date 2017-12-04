@@ -1,0 +1,52 @@
+
+<link rel="stylesheet" type="text/css" href="../../static/srcCss/commission-withdrawal.css">
+
+<div class="panel">
+    <div class="panel-heading">待审核提现列表</div>
+    <div class="panel-body">
+        <form class="form-inline" id="searchForm" action="../withdraw/depositlist" method="get" onkeydown="if(event.keyCode==13)return false;">
+            <input type="text" class="form-control" name="phone" id="phone" placeholder="请输入手机号" autocomplete="off">
+            <input type="button" class="btn btn-info" value="搜索" id="submit">
+        </form>
+        <hr>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>提现时间</th>
+                    <th>用户手机号</th>
+                    <th>提现金额(元)</th>
+                    <th class="text-center">查看</th>
+                    <th class="text-center">操作</th>
+                </tr>
+            </thead>
+            <tbody id="data_detail">
+            {{range $k,$v:=.userDeposit}}
+                <tr>
+                    <td class="depId hide1">{{$v.Id}}</td>
+                    <td>{{$v.AmountTime.Format "2006-01-02 15:04:05"}}</td>
+                    <td>{{accountDispose $v.Account}}</td>
+                    <td class="unomal">{{$v.Amount}}</td>
+                    <td class="text-center">
+                        <a href="../data/datapage?userId={{$v.Uid}}&date={{$v.AmountTime}}" class="skip1 edit">推广数据</a>
+                        <a href="../withdraw/userwithdrawrecord?userId={{$v.Uid}}" class="skip1 edit">提现记录</a>
+                    </td>
+                    <td class="text-center">
+                        <span class="enable">通过</span>
+                        <span class="disable">拒绝</span>
+                    </td>
+                </tr>
+            {{end}}
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" style="vertical-align: 10px;">
+                        <div class="pagination" style="vertical-align: 10px;">总共{{.count}}条</div>
+                        <div class="pagination" id="pagination" data-url="../withdraw/depositlist" currentPage="{{.pageNum}}" pageCount="{{.pageCount}}"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../static/srcJs/commission-withdrawal.js"></script>

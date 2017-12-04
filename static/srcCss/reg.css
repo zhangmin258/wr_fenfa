@@ -1,0 +1,155 @@
+
+
+/*css reset*/
+*{
+    margin: 0;
+    padding: 0;
+}
+ol,ul{
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: #999;
+}
+a:hover{
+    color: #e80012;
+}
+img{
+    border: none;
+    display: block;
+}
+label{
+    cursor: pointer;
+}
+input[type="checkbox"]{
+    cursor: pointer;
+}
+html,body{
+    width: 100%;
+    height: 100%;
+    font-size: 12px;
+    font-family: tahoma, '微软雅黑', arial, sans-serif;
+    
+}
+
+.page-wrap{
+    width: 100%;
+    height: 100%;
+}
+
+.w{
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    min-width: 1080px;
+    background: #F1FBFD;
+    position: relative;
+}
+
+.reg-title{
+    width: 100%;
+    height: 98px;
+    background: url('../img/title-bg.png') no-repeat;
+    background-size: cover;
+}
+
+.reg-title span{
+    font-size: 14px;
+    color: #fff;
+}
+
+.reg-title a{
+    color: #fff;
+    font-size: 25px;
+    margin-left: 20px;
+}
+
+.reg-con{
+    width: 90%;
+    height: 600px;
+    background: #fff;
+    margin: 22px auto;
+    box-shadow: 1px 10px 16px #ccdfe3;
+    padding-top: 70px;
+}
+
+.reg-con .reg-wrap{
+    width: 500px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.reg-con .reg-wrap .title{
+    margin-bottom: 40px;
+    color: #3F82E7;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-group{
+    margin-bottom: 20px;
+    height: 40px;
+}
+
+.form-group label{
+    font-weight: normal;
+    color: #666;
+    font-size: 14px;
+    padding: 0;
+    line-height: 25px;
+}
+
+.form-group input{
+    height: 40px;
+    line-height: 40px;
+}
+
+#get-vcode{
+    height: 40px;
+    width: 116px;
+}
+
+#submit{
+    width: 120px;
+    height: 40px;
+    letter-spacing: 2px;
+    font-size: 16px;
+}
+
+.link-item{
+    text-align: center;
+}
+
+.link-item a.link{
+    color: #0191ff;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.link-item a.link:hover{
+    color: #c60023;
+}
+
+.error-item{
+    position: relative;
+    width: 320px;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 35px;
+    margin-bottom: 10px;
+    margin-left: 90px;
+    border: red solid 1px;
+    color: red;
+    background: #fde9e9;
+    display: none;
+}
+
+.error-item .error-icon{
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    margin-top: -7px;
+    font-size: 14px;
+}

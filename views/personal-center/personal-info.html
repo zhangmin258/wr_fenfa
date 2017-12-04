@@ -1,0 +1,49 @@
+
+<link rel="stylesheet" type="text/css" href="../../static/srcCss/personal-info.css">
+
+<div class="panel">
+    <div class="panel-body">
+        <div class="panel-title">个人相关信息</div>
+        <div class="con">
+            <img src="../../static/img/user.jpg" alt="" class="user-logo">
+            <p class="name">{{.userInfo.Account}}</p>
+        </div>
+        <div class="con">
+            <p class="item">
+                <span class="title">手机号</span>
+                <span class="info">{{.userInfo.Account}}</span>
+            </p>
+            <p class="item">
+                <span class="title">专属链接</span>
+                <span class="btn btn-success" id="copy">复制链接</span>
+                <input type="text" class="url" value="{{.userInfo.Url}}">
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="panel">
+    <div class="panel-body">
+        <div class="panel-title">提现信息</div>
+        <div class="con">
+            <p class="item">
+                <span class="title">姓名</span>
+                <span class="info">{{.userInfo.Name}}</span>
+            </p>
+            <p class="item">
+                <span class="title">身份证号</span>
+                <span class="info">{{.userInfo.IdCard}}</span>
+            </p>
+            <p class="item">
+                <span class="title">银行预留手机号</span>
+                <span class="info">{{.userInfo.BankAccount}}</span>
+            </p>
+            <p class="item">
+                <span class="title">银行卡号</span>
+                <span class="info">{{.userInfo.BankCard}}</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="../../static/srcJs/personal-info.js"></script>

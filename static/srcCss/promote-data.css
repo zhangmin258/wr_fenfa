@@ -1,0 +1,111 @@
+
+
+.panel-body{
+    padding-top: 20px;
+}
+
+.panelHeading{
+    padding-bottom: 30px;
+    position: relative;
+}
+
+.scrollText {
+    width: 300px;
+    height: 25px;
+    overflow: hidden;
+    border: maroon dashed 1px;
+    border-radius: 10px;
+    font-size: 12px;
+    font-weight: normal;
+    cursor: pointer;
+}
+.scrollText ul li {
+    float: left;
+    line-height: 25px;
+    padding-right: 50px;
+    color: maroon;
+}
+.scrollText ul:after {
+    content: '';
+    clear: both;
+    display: table;
+}
+.panelHeading i{
+    position: absolute;
+    top: 5px;
+    right: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    display: none;
+}
+
+.data-item{
+    width: 15%;
+    height: 106px;
+    line-height: 26px;
+    text-align: center;
+    float: left;
+    margin: 0 5%;
+    border-radius: 5px;
+    padding-top: 18px;
+}
+
+.data-item p{
+    font-size: 16px;
+    color: #fff;
+}
+
+
+.data-item:nth-of-type(1){
+    background: #ffc658;
+}
+.data-item:nth-of-type(2){
+    background: #f36969;
+}
+.data-item:nth-of-type(3){
+    background: #1eb6e8;
+}
+.data-item:nth-of-type(4){
+    background: #23b166;
+}
+
+.platform{
+    position: relative;
+    margin-left: 20px;
+}
+
+#platformName{
+    width: 250px;
+    border: #999 solid 1px;
+}
+
+#clear{
+    margin: 0 10px;
+}
+
+
+.xl{
+    width: 250px;
+    overflow: text;
+    border: #ccc solid 1px;
+    border-top: none;
+    position: absolute;
+    z-index: 100;
+    top: 35px;
+    left: 0px;
+    padding: 0;
+    display: none;
+}
+
+.xl li {
+    line-height: 30px;
+    cursor: pointer;
+    padding-left: 10px;
+    background: #fff;
+    color: #666;
+}
+
+.xl li:hover {
+    background: #ccc;
+    color: maroon;
+}
